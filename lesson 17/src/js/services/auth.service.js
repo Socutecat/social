@@ -19,7 +19,7 @@ export class AuthService {
 
     signUp({email, password, nickName, fName, lName, phone, gender, city, country, birthDay, birthMonth, birthYear}) {
         return new Promise((resolve, reject) => {
-            fetch(`${env.apiUrl}/public/auth/signup`, {
+            fetch(`${ENV.apiUrl}/public/auth/signup`, {
                 method: "POST",
                 body: JSON.stringify({
                     email, 
