@@ -6,8 +6,8 @@ export class SignupComponent {
 	}
 	render() {
         return `
-		<div class="auth-wrap d-flex">
-        <div class="auth-form col col-6 mx-auto my-auto">
+		<div class="auth-wrap d-flex mt-3 mt-md-5 px-2">
+        <div class="auth-form col-xs-12 col-md-6 mx-auto my-auto">
             <h3>Sign Up to Social.</h3>
             <p class="text-secondary">Enter your info.</p>
             <form name="signUpForm" novalidate>
@@ -56,5 +56,92 @@ export class SignupComponent {
                         <button type="submit" class="btn btn-primary btn-sm">Sign Up</button>
         `;
 	}
-	afterRender() {}
+	afterRender() {
+        document.forms['signUpForm'].addEventListener('submit', (e) => {
+
+            e.preventDefault();
+
+ 
+
+            const email = e.target.elements["email"].value;
+
+            const password = e.target.elements["password"].value;
+
+            const nickName = e.target.elements["nick_name"].value;
+
+            const fName = e.target.elements["first_name"].value;
+
+            const lName = e.target.elements["last_name"].value;
+
+            const phone = e.target.elements["phone"].value;
+
+            const gender = e.target.elements["gender"].value;
+
+            const city = e.target.elements["city"].value;
+
+            const country = e.target.elements["country"].value;
+
+            const birthDay = e.target.elements["day_of_birth"].value;
+
+            const birthMonth = e.target.elements["month_of_birth"].value;
+
+            const birthYear = e.target.elements["year_of_birth"].value;
+
+ 
+
+            const regData = {
+
+                email: email,
+
+                password: password,
+
+                nickName: nickName,
+
+                fName: fName,
+
+                lName: lName,
+
+                phone: phone,
+
+                gender: gender,
+
+                city: city,
+
+                country: country,
+
+                birthDay: birthDay,
+
+                birthMonth: birthMonth,
+
+                birthYear: birthYear
+
+            };
+
+ 
+
+            this._authService.signUp(regData)
+
+            .then((res) => {
+
+                if (!res.error) {               
+
+                    console.log(res.message);
+
+                } else {
+
+                    console.error(res.message);
+
+                }
+
+            })
+
+            .catch((err) => {
+
+                console.log(err);
+
+            });            
+
+        });
+
+    }
 }
